@@ -1,11 +1,9 @@
-const { promisify } = require("util");
-const {resolve, join} = require("path")
-
-const glob = promisify(require('glob'));
+const globby = require("globby");
+const {resolve, posix} = require("path")
 
 findFolders = async () => {
-  const pattern = join(__dirname, '..', '*/');
-  const folders = await glob(pattern, {ignore: ['**/src/**', '**/node_modules/**']});
+  const pattern = posix.join(__dirname, '..', '*');
+  const folders = await globby([pattern, '!**/src'], {onlyDirectories: true, gitignore: true});
   console.log('Pattern: ', pattern);
   console.log('Результат: ', folders);
   return folders;
