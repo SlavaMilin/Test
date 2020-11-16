@@ -1,0 +1,32 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-ubuntu:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: install dependencies
+        run: npm ci
+      - name: test
+        run: npm test
+
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: install dependencies
+        run: npm ci
+      - name: test
+        run: npm test

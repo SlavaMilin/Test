@@ -1,0 +1,27 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SlavaMilin/test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SlavaMilin/test/issues"
+  },
+  "homepage": "https://github.com/SlavaMilin/test#readme",
+  "dependencies": {
+    "glob": "7.1.6",
+    "jest": "26.6.3"
+  },
+  "devDependencies": {
+    "@types/glob": "7.1.3"
+  }
+}
