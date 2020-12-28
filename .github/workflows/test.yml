@@ -1,32 +1,23 @@
 name: test
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
-  test-ubuntu:
+  generate-file:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-      - name: install dependencies
-        run: npm ci
-      - name: test
-        run: npm test
-
-  test-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-
-      - name: install dependencies
-        run: npm ci
-      - name: test
-        run: npm test
+      - name: setup
+        run: |
+          git config user.email $GITHUB_ACTOR@users.noreply.github.com
+          git config --global user.name $GITHUB_ACTOR
+          git checkout main
+          git pull
+      - name: save file
+        run: |
+          echo "test" >> test.txt
+          git add .
+          git commit -m 'add test value'
+          git push origin main
